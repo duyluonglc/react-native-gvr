@@ -1,6 +1,8 @@
 
 # react-native-gvr
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/duyluonglc/react-native-gvr.svg)](https://greenkeeper.io/)
+
 ## Getting started
 
 `$ npm install react-native-gvr --save`
