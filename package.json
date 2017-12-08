@@ -1,0 +1,22 @@
+
+{
+  "name": "react-native-gvr",
+  "version": "1.0.0",
+  "description": "A bridge of react-native with google vr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "video-360",
+    "video-vr"
+  ],
+  "author": "",
+  "license": "",
+  "peerDependencies": {
+    "react-native": "^0.41.2",
+    "react-native-windows": "0.41.0-rc.1"
+
+  }
+}
