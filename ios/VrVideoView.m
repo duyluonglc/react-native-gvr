@@ -6,7 +6,7 @@
 //  Copyright © 2016 Facebook. All rights reserved.
 //
 
-#import "VideoView.h"
+#import "VrVideoView.h"
 #import "GVRWidgetView.h"
 #import <React/RCTConvert.h>
 
@@ -22,7 +22,7 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
 
 
 
-@implementation VideoView {
+@implementation VrVideoView {
   BOOL _isPaused;
   GVRVideoView *_videoView;
   GVRVideoType __videoType;
@@ -53,11 +53,12 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   _videoView.volume = volume;
 }
 
--(void)setVideo:(NSDictionary *)video
+-(void)setSrc:(NSDictionary *)src
 {
-  NSString *uri = [video objectForKey:@"uri"];
+  NSString *uri = [src objectForKey:@"uri"];
   NSURL *url = [NSURL URLWithString:uri];
-  NSString *strType = [video objectForKey:@"type"];
+  NSString *strType = [src objectForKey:@"type"];
+  BOOL isNetwork = [src objectForKey:@"isNetwork"];
   
   GVRVideoType videoType = kGVRVideoTypeMono;
   if ([strType isEqualToString:@"stereo"]) {
@@ -65,11 +66,11 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   }
   
   //play from remote url
-  if ( [[uri lowercaseString] hasPrefix:@"https://"] ) {
+  if ( isNetwork ) {
     
     [_videoView loadFromUrl:url ofType:videoType];
     
-  }else{ // play from local
+  } else { // play from local
     //Local asset: Can be in the bundle or the uri can be an absolute path of a stored video in the application
     
     //Check whether the file loaded from the Bundle,

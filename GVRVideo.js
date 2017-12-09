@@ -7,19 +7,42 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { requireNativeComponent, ViewPropTypes } from 'react-native'
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource'
 
 class VideoView extends Component {
   render() {
-    return <RCTViedoView {...this.props} />
+    const source = resolveAssetSource(this.props.source) || {}
+    let uri = source.uri || '';
+    if (uri && uri.match(/^\//)) {
+      uri = `file://${uri}`;
+    }
+
+    const isNetwork = !!(uri && uri.match(/^https?:/));
+    const isAsset = !!(uri && uri.match(/^(assets-library|file|content|ms-appx|ms-appdata):/))
+
+    return <RCTViedoView
+      {...this.props}
+      src={{
+        uri,
+        isNetwork,
+        isAsset,
+        type: source.type || ''
+      }}
+    />
   }
 }
 
 VideoView.propTypes = {
   ...ViewPropTypes,
-  video: PropTypes.shape({
-    uri: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
+  src: PropTypes.object,
+  source: PropTypes.oneOfType([
+    PropTypes.shape({
+      uri: PropTypes.string,
+      type: PropTypes.string,
+    }),
+    // Opaque type returned by require('./video.mp4')
+    PropTypes.number
+  ]),
   videoType: PropTypes.string,
   volume: PropTypes.number,
   displayMode: PropTypes.string,
@@ -31,5 +54,5 @@ VideoView.propTypes = {
 }
 
 // requireNativeComponent automatically resolves this to "VideoManager"
-var RCTViedoView = requireNativeComponent('Video', VideoView);
+var RCTViedoView = requireNativeComponent('VrVideo', VideoView);
 export default VideoView;

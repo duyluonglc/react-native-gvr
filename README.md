@@ -35,7 +35,10 @@
   	```
 ## Setup
 #### iOS 
-in ios folder create a **Podfile**
+
+- Copy `./node_modules/react-native-gvr/pod_post_install.sh` to ios folder
+
+- Create a **Podfile** in ios folder
 
 ```shell
 target 'myProject' do
@@ -65,6 +68,11 @@ target 'myProject' do
   
     # Explicitly include Yoga if you are using RN >= 0.42.0
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  # Execute every pod install
+  post_install do |installer|
+      system(". ./pod_post_install.sh")
+  end
 end
 
 ```
@@ -75,29 +83,29 @@ Still in ios folder install pods locally
 pod install 
 pod update
 ```
-- Copy `./node_modules/react-native-gvr/pod_post_install.sh` to ios folder
-- Run `./pod_post_install.sh`
+
 - Open `myProject.xcworkspace` and under `myProject` > `Build Settings` under `Build Options` set **ENABLE BITCODE** to **NO**
 
-###Android
+### Android
 - Open `./android/app/build.gradle` then set `minSdkVersion 19`
+
 ## Usage
 ```javascript
 import { VideoView } from 'react-native-gvr'
 
-	<VideoView
-		style={{ height: 300, width: 200 }}
-		video={{
-			uri: 'https://raw.githubusercontent.com/googlevr/gvr-ios-sdk/master/Samples/VideoWidgetDemo/resources/congo.mp4',
-			type: 'mono'
-		}}
-		displayMode={'embedded'}
-		volume={1}
-		enableFullscreenButton
-		enableCardboardButton
-		enableTouchTracking
-		hidesTransitionView
-		enableInfoButton={false}
-	/>
+<VideoView
+  style={{ height: 300, width: 200 }}
+  video={{
+    uri: 'https://raw.githubusercontent.com/googlevr/gvr-ios-sdk/master/Samples/VideoWidgetDemo/resources/congo.mp4',
+    type: 'mono'
+  }}
+  displayMode={'embedded'}
+  volume={1}
+  enableFullscreenButton
+  enableCardboardButton
+  enableTouchTracking
+  hidesTransitionView
+  enableInfoButton={false}
+/>
 ```
   

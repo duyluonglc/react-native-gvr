@@ -10,11 +10,11 @@
 #import <React/RCTView.h>
 #import "GVRVideoView.h"
 
-@interface VideoView : RCTView <GVRVideoViewDelegate>
+@interface VrVideoView : RCTView <GVRVideoViewDelegate>
 
 
 @property (nonatomic, assign) float volume;
-@property (nonatomic, assign) NSDictionary* video;
+@property (nonatomic, assign) NSDictionary* src;
 @property (nonatomic, assign) NSString* displayMode;
 @property (nonatomic, assign) BOOL enableFullscreenButton;
 @property (nonatomic, assign) BOOL enableCardboardButton;

@@ -17,20 +17,20 @@ import com.google.vr.sdk.widgets.video.VrVideoView;
 import java.io.IOException;
 
 /**
- * VideoManager.java
+ * VrVideoManager.java
  *
  * Created by Pietralberto Mazza on 22/06/17.
  * Copyright © 2017 Facebook. All rights reserved.
  *
  */
 
-public class VideoManager extends SimpleViewManager<VrVideoView> {
-    private static final String CLASS_NAME = "Video";
-    private static final String TAG = VideoManager.class.getSimpleName();
+public class VrVideoManager extends SimpleViewManager<VrVideoView> {
+    private static final String CLASS_NAME = "VrVideo";
+    private static final String TAG = VrVideoManager.class.getSimpleName();
 
     private VrVideoView view;
 
-    public VideoManager(ReactApplicationContext context) { super(); }
+    public VrVideoManager(ReactApplicationContext context) { super(); }
 
     @Override
     public String getName() {
@@ -101,10 +101,13 @@ public class VideoManager extends SimpleViewManager<VrVideoView> {
         view.setInfoButtonEnabled(enabled);
     }
 
-    @ReactProp(name = "video")
-    public void setVideo(VrVideoView view, ReadableMap config) {
-        String type = config.getString("type");
-        Uri uri = Uri.parse(config.getString("uri"));
+    @ReactProp(name = "src")
+    public void setSrc(VrVideoView view, ReadableMap src) {
+
+        String type = src.getString("type");
+        String uri = src.getString("uri");
+        Boolean isNetwork = src.getBoolean("isNetwork");
+        Boolean isAsset = src.getBoolean("isAsset");
 
         VrVideoView.Options videoOptions = new VrVideoView.Options();
         videoOptions.inputFormat = VrVideoView.Options.FORMAT_DEFAULT;
@@ -120,9 +123,9 @@ public class VideoManager extends SimpleViewManager<VrVideoView> {
                 videoOptions.inputType = VrVideoView.Options.TYPE_MONO;
                 break;
         }
-
+        Source source = new Source(uri, videoOptions, isNetwork, isAsset);
         VideoLoaderTask videoLoaderTask = new VideoLoaderTask();
-        videoLoaderTask.execute(Pair.create(uri, videoOptions));
+        videoLoaderTask.execute(source);
     }
 
     private class ActivityEventListener extends VrVideoEventListener {
@@ -159,11 +162,30 @@ public class VideoManager extends SimpleViewManager<VrVideoView> {
         }
     }
 
-    class VideoLoaderTask extends AsyncTask<Pair<Uri, VrVideoView.Options>, Void, Boolean> {
+    class Source {
+        public String uri;
+        public VrVideoView.Options options;
+        public Boolean isAsset;
+        public Boolean isNetwork;
+
+        public Source(String uri, VrVideoView.Options videoOptions, Boolean isNetwork, Boolean isAsset) {
+            this.uri = uri;
+            this.options = videoOptions;
+            this.isNetwork = isNetwork;
+            this.isAsset = isAsset;
+        }
+    }
+
+    class VideoLoaderTask extends AsyncTask<Source, Void, Boolean> {
         @SuppressWarnings("WrongThread")
-        protected Boolean doInBackground(Pair<Uri, VrVideoView.Options>... args) {
+        protected Boolean doInBackground(Source... args) {
             try {
-                view.loadVideo(args[0].first, args[0].second);
+                if (args[0].isAsset) {
+                    view.loadVideoFromAsset(args[0].uri, args[0].options);
+                } else {
+                    Uri uri = Uri.parse(args[0].uri);
+                    view.loadVideo(uri, args[0].options);
+                }
             } catch (IOException e) {}
 
             return true;

@@ -6,6 +6,6 @@
 //
 #import <React/RCTViewManager.h>
 
-@interface VideoManager : RCTViewManager
+@interface VrVideoManager : RCTViewManager
 
 @end

@@ -32,4 +32,8 @@ target 'example' do
   
     # Explicitly include Yoga if you are using RN >= 0.42.0
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  post_install do |installer|
+      system(". ./pod_post_install.sh")
+  end
 end

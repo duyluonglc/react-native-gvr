@@ -22,12 +22,13 @@ export default class App extends Component {
         </Text>
         <VideoView
           style={{ height: 300, width: 200 }}
-          video={{
+          source={{
             uri: 'https://raw.githubusercontent.com/googlevr/gvr-ios-sdk/master/Samples/VideoWidgetDemo/resources/congo.mp4',
             type: 'mono'
           }}
           displayMode={'embedded'}
           volume={1}
+          paused={false}
           enableFullscreenButton
           enableCardboardButton
           enableTouchTracking

@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		68B604451FDA47BB00F134F7 /* PanoramaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604431FDA47BB00F134F7 /* PanoramaManager.m */; };
-		68B604461FDA47BB00F134F7 /* PanoramaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604441FDA47BB00F134F7 /* PanoramaView.m */; };
-		68B6044B1FDA47CA00F134F7 /* VideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604491FDA47CA00F134F7 /* VideoManager.m */; };
-		68B6044D1FDA47D200F134F7 /* VideoView copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B6044C1FDA47D200F134F7 /* VideoView copy.m */; };
-		B3E7B58A1CC2AC0600A0062D /* RNGvr.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGvr.m */; };
+		6854AB211FDB878F00160BA2 /* VrVideoManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 68B604481FDA47CA00F134F7 /* VrVideoManager.h */; };
+		6854AB221FDB879100160BA2 /* VrVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604491FDA47CA00F134F7 /* VrVideoManager.m */; };
+		6854AB231FDB879300160BA2 /* VrVideoView.h in Sources */ = {isa = PBXBuildFile; fileRef = 68B6044A1FDA47CA00F134F7 /* VrVideoView.h */; };
+		6854AB241FDB879500160BA2 /* VrVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854AAF81FDB83A200160BA2 /* VrVideoView.m */; };
+		6854AB251FDB879800160BA2 /* PanoramaManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 68B604421FDA47BB00F134F7 /* PanoramaManager.h */; };
+		6854AB261FDB879A00160BA2 /* PanoramaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604431FDA47BB00F134F7 /* PanoramaManager.m */; };
+		6854AB271FDB879C00160BA2 /* PanoramaView.h in Sources */ = {isa = PBXBuildFile; fileRef = 68B604471FDA47CA00F134F7 /* PanoramaView.h */; };
+		6854AB281FDB87A000160BA2 /* PanoramaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B604441FDA47BB00F134F7 /* PanoramaView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNGvr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNGvr.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6854AAF81FDB83A200160BA2 /* VrVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VrVideoView.m; sourceTree = "<group>"; };
 		688E75281FDA4AD80023DA5E /* libGVRSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGVRSDK.a; sourceTree = "<group>"; };
 		688E752A1FDA4AD80023DA5E /* CardboardSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CardboardSDK.bundle; sourceTree = "<group>"; };
 		688E752B1FDA4AD80023DA5E /* GoogleKitCore.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleKitCore.bundle; sourceTree = "<group>"; };
@@ -50,12 +54,9 @@
 		68B604431FDA47BB00F134F7 /* PanoramaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaManager.m; sourceTree = "<group>"; };
 		68B604441FDA47BB00F134F7 /* PanoramaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaView.m; sourceTree = "<group>"; };
 		68B604471FDA47CA00F134F7 /* PanoramaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanoramaView.h; sourceTree = "<group>"; };
-		68B604481FDA47CA00F134F7 /* VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoManager.h; sourceTree = "<group>"; };
-		68B604491FDA47CA00F134F7 /* VideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoManager.m; sourceTree = "<group>"; };
-		68B6044A1FDA47CA00F134F7 /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
-		68B6044C1FDA47D200F134F7 /* VideoView copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VideoView copy.m"; sourceTree = "<group>"; };
-		B3E7B5881CC2AC0600A0062D /* RNGvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGvr.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RNGvr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGvr.m; sourceTree = "<group>"; };
+		68B604481FDA47CA00F134F7 /* VrVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VrVideoManager.h; sourceTree = "<group>"; };
+		68B604491FDA47CA00F134F7 /* VrVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VrVideoManager.m; sourceTree = "<group>"; };
+		68B6044A1FDA47CA00F134F7 /* VrVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VrVideoView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,16 +82,14 @@
 			isa = PBXGroup;
 			children = (
 				688E75261FDA4AD80023DA5E /* GVRSDK */,
-				68B6044C1FDA47D200F134F7 /* VideoView copy.m */,
-				68B604471FDA47CA00F134F7 /* PanoramaView.h */,
-				68B604481FDA47CA00F134F7 /* VideoManager.h */,
-				68B604491FDA47CA00F134F7 /* VideoManager.m */,
-				68B6044A1FDA47CA00F134F7 /* VideoView.h */,
+				68B604481FDA47CA00F134F7 /* VrVideoManager.h */,
+				68B604491FDA47CA00F134F7 /* VrVideoManager.m */,
+				68B6044A1FDA47CA00F134F7 /* VrVideoView.h */,
+				6854AAF81FDB83A200160BA2 /* VrVideoView.m */,
 				68B604421FDA47BB00F134F7 /* PanoramaManager.h */,
 				68B604431FDA47BB00F134F7 /* PanoramaManager.m */,
+				68B604471FDA47CA00F134F7 /* PanoramaView.h */,
 				68B604441FDA47BB00F134F7 /* PanoramaView.m */,
-				B3E7B5881CC2AC0600A0062D /* RNGvr.h */,
-				B3E7B5891CC2AC0600A0062D /* RNGvr.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -233,11 +232,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68B604461FDA47BB00F134F7 /* PanoramaView.m in Sources */,
-				68B6044D1FDA47D200F134F7 /* VideoView copy.m in Sources */,
-				68B604451FDA47BB00F134F7 /* PanoramaManager.m in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RNGvr.m in Sources */,
-				68B6044B1FDA47CA00F134F7 /* VideoManager.m in Sources */,
+				6854AB211FDB878F00160BA2 /* VrVideoManager.h in Sources */,
+				6854AB221FDB879100160BA2 /* VrVideoManager.m in Sources */,
+				6854AB231FDB879300160BA2 /* VrVideoView.h in Sources */,
+				6854AB241FDB879500160BA2 /* VrVideoView.m in Sources */,
+				6854AB251FDB879800160BA2 /* PanoramaManager.h in Sources */,
+				6854AB261FDB879A00160BA2 /* PanoramaManager.m in Sources */,
+				6854AB271FDB879C00160BA2 /* PanoramaView.h in Sources */,
+				6854AB281FDB87A000160BA2 /* PanoramaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

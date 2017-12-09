@@ -6,18 +6,18 @@
 //  Copyright © 2016 Facebook. All rights reserved.
 //
 
-#import "VideoManager.h"
+#import "VrVideoManager.h"
 
-#import "VideoView.h"
+#import "VrVideoView.h"
 #import <UIKit/UIKit.h>
 
-@implementation VideoManager
+@implementation VrVideoManager
 
 RCT_EXPORT_MODULE();
 
 - (UIView *)view
 {
-  return [VideoView new];
+  return [VrVideoView new];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(enableFullscreenButton, BOOL);
@@ -26,7 +26,7 @@ RCT_EXPORT_VIEW_PROPERTY(enableTouchTracking, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(hidesTransitionView, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(enableInfoButton, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(displayMode, NSString);
-RCT_EXPORT_VIEW_PROPERTY(video, NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(src, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(volume, float)
 
 
