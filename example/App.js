@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native'
-import { VideoView } from 'react-native-gvr'
+import { VideoView, PanoramaView } from 'react-native-gvr'
 
 export default class App extends Component {
   render () {
@@ -35,6 +35,10 @@ export default class App extends Component {
           hidesTransitionView
           enableInfoButton={false}
         />
+        {/* <PanoramaView
+          style={{ height: 300, width: 200, backgroundColor: '#ccc' }}
+          source={{ uri: 'https://roadtovrlive-5ea0.kxcdn.com/wp-content/uploads/2014/09/Venice.Still001.jpeg' }}
+        /> */}
       </View>
     )
   }

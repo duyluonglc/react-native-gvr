@@ -95,7 +95,7 @@ import { VideoView } from 'react-native-gvr'
 
 <VideoView
   style={{ height: 300, width: 200 }}
-  video={{
+  source={{
     uri: 'https://raw.githubusercontent.com/googlevr/gvr-ios-sdk/master/Samples/VideoWidgetDemo/resources/congo.mp4',
     type: 'mono'
   }}
@@ -108,4 +108,3 @@ import { VideoView } from 'react-native-gvr'
   enableInfoButton={false}
 />
 ```
-  
