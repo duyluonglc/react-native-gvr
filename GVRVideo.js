@@ -1,6 +1,6 @@
 /*
- * @Author: tiero 
- * @Date: 2017-01-05 17:39:15 
+ * @Author: tiero
+ * @Date: 2017-01-05 17:39:15
  * @Last Modified by: tiero
  * @Last Modified time: 2017-01-05 17:40:04
  */
@@ -10,15 +10,15 @@ import { requireNativeComponent, ViewPropTypes } from 'react-native'
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource'
 
 class VideoView extends Component {
-  render() {
+  render () {
     const source = resolveAssetSource(this.props.source) || {}
-    let uri = source.uri || '';
+    let uri = source.uri || ''
     if (uri && uri.match(/^\//)) {
-      uri = `file://${uri}`;
+      uri = `file://${uri}`
     }
 
-    const isNetwork = !!(uri && uri.match(/^https?:/));
-    const isAsset = !!(uri && uri.match(/^(assets-library|file|content|ms-appx|ms-appdata):/))
+    const isNetwork = !!(uri && uri.match(/^https?:/))
+    const isAsset = !!(uri && uri.match(/^(assets-library|content|ms-appx|ms-appdata):/))
 
     return <RCTViedoView
       {...this.props}
@@ -38,7 +38,7 @@ VideoView.propTypes = {
   source: PropTypes.oneOfType([
     PropTypes.shape({
       uri: PropTypes.string,
-      type: PropTypes.string,
+      type: PropTypes.string
     }),
     // Opaque type returned by require('./video.mp4')
     PropTypes.number
@@ -50,9 +50,9 @@ VideoView.propTypes = {
   enableCardboardButton: PropTypes.bool,
   enableInfoButton: PropTypes.bool,
   enableTouchTracking: PropTypes.bool,
-  hidesTransitionView: PropTypes.bool,
+  hidesTransitionView: PropTypes.bool
 }
 
 // requireNativeComponent automatically resolves this to "VideoManager"
-var RCTViedoView = requireNativeComponent('VrVideo', VideoView);
-export default VideoView;
+var RCTViedoView = requireNativeComponent('VrVideo', VideoView)
+export default VideoView

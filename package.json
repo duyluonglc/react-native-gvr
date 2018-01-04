@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-gvr",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A bridge of react-native with google vr",
   "main": "index.js",
   "scripts": {
