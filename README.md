@@ -1,5 +1,6 @@
-
 # react-native-gvr
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduyluonglc%2Freact-native-gvr.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduyluonglc%2Freact-native-gvr?ref=badge_shield)
+
 
 ## Getting started
 
@@ -108,3 +109,7 @@ import { VideoView } from 'react-native-gvr'
   enableInfoButton={false}
 />
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduyluonglc%2Freact-native-gvr.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduyluonglc%2Freact-native-gvr?ref=badge_large)
