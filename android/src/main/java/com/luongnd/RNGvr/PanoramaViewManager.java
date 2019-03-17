@@ -53,6 +53,11 @@ public class PanoramaViewManager extends SimpleViewManager<PanoramaView> {
         view.setImageUrl(imageUrl);
     }
 
+    @ReactProp(name = "imagePath")
+    public void setImageFilePath(PanoramaView view, String imagePath) {
+        view.setImageFilePath(imagePath);
+    }
+
     @ReactProp(name = "dimensions")
     public void setDimensions(PanoramaView view, ReadableMap dimensions) {
         int width = dimensions.getInt("width");

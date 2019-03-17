@@ -27,6 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.*;
 
 import javax.annotation.Nullable;
 
@@ -45,6 +46,7 @@ public class PanoramaView extends RelativeLayout {
     private Options panoOptions = new Options();
 
     private URL imageUrl;
+    private String imagePath;
     private int imageWidth;
     private int imageHeight;
 
@@ -55,12 +57,12 @@ public class PanoramaView extends RelativeLayout {
         _manager = manager;
         _activity = activity;
     }
-
     public void onAfterUpdateTransaction() {
         panoWidgetView = new VrPanoramaView(_activity);
         panoWidgetView.setEventListener(new ActivityEventListener());
         panoWidgetView.setStereoModeButtonEnabled(false);
         panoWidgetView.setInfoButtonEnabled(false);
+        panoWidgetView.setPureTouchTracking(true);
         panoWidgetView.setFullscreenButtonEnabled(false);
         this.addView(panoWidgetView);
 
@@ -70,13 +72,22 @@ public class PanoramaView extends RelativeLayout {
         imageLoaderTask = new ImageLoaderTask();
         imageLoaderTask.execute(Pair.create(imageUrl, panoOptions));
     }
-
     public void setImageUrl(String value) {
         if (imageUrl != null && imageUrl.toString().equals(value)) { return; }
 
         try {
             imageUrl = new URL(value);
         } catch(MalformedURLException e) {}
+    }
+
+    // Set path to file instead of URL
+    public void setImageFilePath(String value) {
+        if (imagePath != null) { return; }
+        try {
+            imagePath = value.toString();
+        } catch (Exception e) {
+            Log.e(TAG, "Could not load file: " + e);
+        }
     }
 
     public void setDimensions(int width, int height) {
@@ -91,35 +102,43 @@ public class PanoramaView extends RelativeLayout {
 
     class ImageLoaderTask extends AsyncTask<Pair<URL, Options>, Void, Boolean> {
         protected Boolean doInBackground(Pair<URL, Options>... fileInformation) {
-            final URL imageUrl = fileInformation[0].first;
-            Options panoOptions = fileInformation[0].second;
-
-            InputStream istr = null;
             Bitmap image;
 
-            if (!imageCache.containsKey(imageUrl)) {
-                try {
-                    HttpURLConnection connection = (HttpURLConnection) fileInformation[0].first.openConnection();
-                    connection.connect();
+            if (imageUrl != null) {
+                final URL imageUrl = fileInformation[0].first;
+                Options panoOptions = fileInformation[0].second;
 
-                    istr = connection.getInputStream();
+                InputStream istr = null;
 
-                    imageCache.put(imageUrl, decodeSampledBitmap(istr));
-                } catch (IOException e) {
-                    Log.e(TAG, "Could not load file: " + e);
-                    return false;
-                } finally {
+                if (!imageCache.containsKey(imageUrl)) {
                     try {
-                        istr.close();
+                        HttpURLConnection connection = (HttpURLConnection) fileInformation[0].first.openConnection();
+                        connection.connect();
+
+                        istr = connection.getInputStream();
+
+                        imageCache.put(imageUrl, decodeSampledBitmap(istr));
                     } catch (IOException e) {
-                        Log.e(TAG, "Could not close input stream: " + e);
+                        Log.e(TAG, "Could not load file: " + e);
+                        return false;
+                    } finally {
+                        try {
+                            istr.close();
+                        } catch (IOException e) {
+                            Log.e(TAG, "Could not close input stream: " + e);
+                        }
                     }
                 }
+
+                image = imageCache.get(imageUrl);
+                panoWidgetView.loadImageFromBitmap(image, panoOptions);
+
+            } else {
+                File file = new File(imagePath);
+                image = BitmapFactory.decodeFile(file.getAbsolutePath());
+                Options panoOptions = new Options();
+                panoWidgetView.loadImageFromBitmap(image, panoOptions);
             }
-
-            image = imageCache.get(imageUrl);
-
-            panoWidgetView.loadImageFromBitmap(image, panoOptions);
 
             return true;
         }
