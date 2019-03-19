@@ -123,7 +123,9 @@ public class PanoramaView extends RelativeLayout {
                         return false;
                     } finally {
                         try {
-                            istr.close();
+                            if (istr != null) {
+                                istr.close();
+                            }
                         } catch (IOException e) {
                             Log.e(TAG, "Could not close input stream: " + e);
                         }
